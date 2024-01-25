@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:thrifthing_app_kel4/screen/about_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:thrifthing_app_kel4/pages/about.dart';
+import 'package:thrifthing_app_kel4/pages/cart.dart';
+import 'package:thrifthing_app_kel4/services/Blocs/Authentication/bloc/login_bloc.dart';
 import 'package:thrifthing_app_kel4/widget/product_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -137,9 +140,20 @@ class HomeScreen extends StatelessWidget {
         currentIndex: 0,
         onTap: (index) {
           if (index == 3) {
+            BlocProvider.of<LoginBloc>(context).add(
+              ProsesLogout(),
+            );
+          }
+          if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AboutScreen()),
+              MaterialPageRoute(builder: (context) => CartScreen()),
+            );
+          }
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CartScreen()),
             );
           }
         },
@@ -149,8 +163,8 @@ class HomeScreen extends StatelessWidget {
           BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.cart_fill), label: 'Cart'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Favorite'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'About')
+              icon: Icon(CupertinoIcons.bag), label: 'Product'),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Logout')
         ],
       ),
       floatingActionButton: FloatingActionButton(

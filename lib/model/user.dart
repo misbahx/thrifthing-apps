@@ -1,20 +1,13 @@
 class User {
-  final String email;
-  final String password;
+  final String token;
 
-  User({required this.email, required this.password});
+  User({
+    required this.token,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      email: json['email'],
-      password: json['password'],
+      token: json['session_token'],
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'password': password,
-    };
   }
 }

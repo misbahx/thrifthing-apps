@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:thrifthing_app_kel4/screen/cart_screen.dart';
+import 'package:thrifthing_app_kel4/pages/cart.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   List sizes = ['S', 'M', 'L', 'XL', 'XXL'];
