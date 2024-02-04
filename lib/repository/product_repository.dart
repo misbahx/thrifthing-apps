@@ -46,4 +46,57 @@ class ProductRepository extends Repository {
       return [];
     }
   }
+
+  Future editProduct({
+    required int id,
+    required String name,
+    required String description,
+    required String price,
+    File? image,
+  }) async {
+    try {
+      Map<String, dynamic> formDataMap = {
+        "id": id,
+        "name": name,
+        "description": description,
+        "price": price,
+      };
+
+      if (image != null) {
+        formDataMap['image'] = await MultipartFile.fromFile(image.path,
+            filename: image.path.split("/").last);
+      }
+
+      FormData formData = FormData.fromMap(formDataMap);
+
+      log('data buat create: ${formData}');
+
+      Response response = await dio.post("/update_product.php", data: formData);
+      log("response edit product ${response}");
+
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw Exception("failed to edit product");
+      }
+    } catch (err) {
+      log("Error ${err}");
+    }
+  }
+
+  Future deleteProduct(int productId) async {
+    FormData formData = FormData.fromMap({"id_product": productId});
+    log("oke masuk");
+    try {
+      final response = await dio.post('/delete_product.php', data: formData);
+      log("Response list product: ${response.data}");
+      Map<String, dynamic> responseData = response.data;
+      log("responseData: ${responseData}");
+      String productsList = responseData["message"];
+      return productsList;
+    } catch (err) {
+      log("Error deleteProduct: ${err}");
+      return [];
+    }
+  }
 }

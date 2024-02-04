@@ -25,6 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(LoginInitial());
     } else {
       bool result = await loginRepository.checkSession(sessionToken);
+      log("result session : ${result}");
       if (result) {
         emit(LoginSuccess(session: sessionToken));
       } else {

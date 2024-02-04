@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thrifthing_app_kel4/pages/product.dart';
+import 'package:thrifthing_app_kel4/pages/product_detail_state.dart';
 
 class ProductCard extends StatelessWidget {
   final dynamic product;
@@ -21,8 +21,10 @@ class ProductCard extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  ProductPage(product: this.product)));
+                            builder: (context) => ProductDetailMainState(
+                              product: this.product,
+                            ),
+                          ));
                     },
                     child: Image.network(
                       this.product["image"],

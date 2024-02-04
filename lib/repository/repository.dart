@@ -10,7 +10,7 @@ class Repository {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     final String session = preferences.getString("session") ?? "";
     log("session ${session}");
-    Map formDataMap = {"session": session};
+    Map formDataMap = {"session_token": session};
     FormData formData = FormData();
     formData.fields
         .addAll(formDataMap.entries.map((e) => MapEntry(e.key, e.value)));
@@ -20,11 +20,12 @@ class Repository {
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = response.data;
-        return data['status'] == 'success';
+        log("data session response : ${data}");
+        return data['status'] == 200;
       }
     } catch (err) {
       print("error check session ${err}");
-      preferences.remove("session");
+      // preferences.remove("session");
     }
     return false;
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:thrifthing_app_kel4/widget/bottom_sheet.dart';
+import 'package:thrifthing_app_kel4/pages/edit_state.dart';
+import 'package:thrifthing_app_kel4/services/Blocs/DetailProduct/detail_product_bloc.dart';
 
 class ProductPage extends StatelessWidget {
   final dynamic product;
@@ -130,36 +132,55 @@ class ProductPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              context.read<DetailProductBloc>().add(
+                                    DeleteProductEvent(
+                                      productId: this.product['id'],
+                                      title: this.product["name"],
+                                    ),
+                                  );
+                            },
                             child: Container(
                               padding: EdgeInsets.all(18),
                               decoration: BoxDecoration(
                                   color: Color(0xFF1E293B),
                                   borderRadius: BorderRadius.circular(30)),
                               child: Icon(
-                                CupertinoIcons.cart_fill,
+                                CupertinoIcons.delete,
                                 size: 22,
-                                color: Colors.grey,
+                                color: Colors.red,
                               ),
                             ),
                           ),
                           InkWell(
                             onTap: () {
-                              showModalBottomSheet(
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (context) {
-                                    return CustomBottomSheet();
-                                  });
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EditProductMainState(
+                                    id: this.product['id'],
+                                    name: this.product['name'],
+                                    description: this.product['description'],
+                                    price: this.product['price'],
+                                    image: this.product['image'],
+                                  ),
+                                ),
+                              ).then((value) {
+                                if (value == 'reload') {
+                                  context
+                                      .read<DetailProductBloc>()
+                                      .add(LoadDetailProductEvent());
+                                }
+                              });
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: 18, horizontal: 70),
                               decoration: BoxDecoration(
-                                  color: Color(0xff16a34a),
+                                  color: Colors.orange,
                                   borderRadius: BorderRadius.circular(30)),
                               child: Text(
-                                "Buy Now",
+                                "Edit",
                                 style: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600,

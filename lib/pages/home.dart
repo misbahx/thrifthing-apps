@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:thrifthing_app_kel4/pages/cart.dart';
+import 'package:thrifthing_app_kel4/pages/about.dart';
 import 'package:thrifthing_app_kel4/pages/product_state.dart';
 import 'package:thrifthing_app_kel4/services/Blocs/Authentication/login_bloc.dart';
 import 'package:thrifthing_app_kel4/widget/product_card.dart';
@@ -130,7 +129,7 @@ class HomePage extends StatelessWidget {
           if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CartPage()),
+              MaterialPageRoute(builder: (context) => AboutPage()),
             );
           }
           if (index == 2) {
@@ -144,7 +143,7 @@ class HomePage extends StatelessWidget {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.cart_fill), label: 'Cart'),
+              icon: Icon(CupertinoIcons.person), label: 'About'),
           BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.bag), label: 'Product'),
           BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Logout')
