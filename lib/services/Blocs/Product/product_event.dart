@@ -12,13 +12,13 @@ class ProductInitialEvent extends ProductEvent {
   List<Object> get props => [];
 }
 
-class ClickAddProduct extends ProductEvent {
+class ClickAddProductEvent extends ProductEvent {
   final String name;
   final String description;
   final String price;
   final File image;
 
-  ClickAddProduct({
+  ClickAddProductEvent({
     required this.name,
     required this.description,
     required this.price,

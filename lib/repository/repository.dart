@@ -9,6 +9,7 @@ class Repository {
   Future<bool> checkSession(String session) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     final String session = preferences.getString("session") ?? "";
+    log("session ${session}");
     Map formDataMap = {"session": session};
     FormData formData = FormData();
     formData.fields
@@ -22,7 +23,8 @@ class Repository {
         return data['status'] == 'success';
       }
     } catch (err) {
-      print("error ${err}");
+      print("error check session ${err}");
+      preferences.remove("session");
     }
     return false;
   }

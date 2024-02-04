@@ -11,7 +11,7 @@ class CustomBottomSheet extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20, bottom: 50),
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xFF1E293B),
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30))),
       child: Column(
@@ -34,7 +34,11 @@ class CustomBottomSheet extends StatelessWidget {
             children: [
               Text(
                 "Size: ",
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white.withOpacity(0.8),
+                ),
               ),
               SizedBox(
                 width: 30,
@@ -44,9 +48,14 @@ class CustomBottomSheet extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 8),
                   padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                      color: Color(0xfff7f8fa),
+                      color: Color(0xff2B3648),
                       borderRadius: BorderRadius.circular(30)),
-                  child: Text(sizes[i]),
+                  child: Text(
+                    sizes[i],
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                    ),
+                  ),
                 )
             ],
           ),
@@ -56,7 +65,11 @@ class CustomBottomSheet extends StatelessWidget {
           Row(
             children: [
               Text("Color: ",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white.withOpacity(0.8),
+                  )),
               SizedBox(width: 30),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 8),
@@ -87,19 +100,23 @@ class CustomBottomSheet extends StatelessWidget {
           Row(
             children: [
               Text("Total: ",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white.withOpacity(0.8),
+                  )),
               SizedBox(
                 width: 30,
               ),
               Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Color(0xfff7f8fa),
+                    color: Color(0xff2B3648),
                     borderRadius: BorderRadius.circular(20)),
                 child: Icon(
                   CupertinoIcons.minus,
                   size: 18,
-                  color: Colors.black,
+                  color: Colors.white.withOpacity(0.8),
                 ),
               ),
               SizedBox(
@@ -107,7 +124,11 @@ class CustomBottomSheet extends StatelessWidget {
               ),
               Text(
                 "01",
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white.withOpacity(0.8),
+                ),
               ),
               SizedBox(
                 width: 8,
@@ -115,12 +136,12 @@ class CustomBottomSheet extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Color(0xfff7f8fa),
+                    color: Color(0xff2B3648),
                     borderRadius: BorderRadius.circular(20)),
                 child: Icon(
                   CupertinoIcons.plus,
                   size: 18,
-                  color: Colors.black,
+                  color: Colors.white.withOpacity(0.8),
                 ),
               )
             ],
@@ -133,12 +154,15 @@ class CustomBottomSheet extends StatelessWidget {
             children: [
               Text(
                 "Total Payment: ",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white.withOpacity(0.8)),
               ),
               Text(
                 "\$300.54",
                 style: TextStyle(
-                    color: Colors.grey[600],
+                    color: Colors.grey,
                     fontSize: 20,
                     fontWeight: FontWeight.w600),
               )
@@ -149,13 +173,13 @@ class CustomBottomSheet extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CartScreen()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CartPage()));
             },
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 100),
               decoration: BoxDecoration(
-                  color: Color(0xff63663C),
+                  color: Color(0xff0EA5E9),
                   borderRadius: BorderRadius.circular(30)),
               child: Text(
                 "Checkout",

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:thrifthing_app_kel4/pages/product.dart';
 
 class ProductCard extends StatelessWidget {
-  String img;
+  final dynamic product;
 
-  ProductCard(this.img) {}
+  ProductCard({required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,11 @@ class ProductCard extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ProductScreen(img)));
+                              builder: (context) =>
+                                  ProductPage(product: this.product)));
                     },
-                    child: Image.asset(
-                      "images/${img}.jpg",
+                    child: Image.network(
+                      this.product["image"],
                       fit: BoxFit.cover,
                       height: 230,
                     )),
@@ -60,21 +61,21 @@ class ProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  img,
+                  this.product["name"],
                   style: TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.w500,
-                      color: Colors.black.withOpacity(0.7)),
+                      color: Colors.white),
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 Text(
-                  "\$300.54",
+                  "Rp. ${this.product["price"]}",
                   style: TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xff515135)),
+                      color: Colors.white.withOpacity(0.7)),
                 )
               ],
             ),

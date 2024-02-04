@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CartItemSamples extends StatelessWidget {
-  List imgList = ["Cardigan Rajut", "Swater Pink", "Swater Pink"];
+  List imgList = ["Cardigan", "Swater Pink", "Swater Pink"];
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Column(
       children: [
         for (int i = 0; i < imgList.length; i++)
@@ -15,7 +14,7 @@ class CartItemSamples extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(0xFF1E293B),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(children: [
@@ -31,7 +30,7 @@ class CartItemSamples extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Color.fromARGB(225, 224, 224, 224),
                     borderRadius: BorderRadius.circular(10)),
-                child: Image.asset("images/${imgList[i]}.jpg"),
+                child: Image.asset("assets/images/${imgList[i]}.jpg"),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
@@ -54,7 +53,7 @@ class CartItemSamples extends StatelessWidget {
                           color: Colors.black.withOpacity(0.6)),
                     ),
                     Text(
-                      "\$300.54",
+                      "Rp. 150.000",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

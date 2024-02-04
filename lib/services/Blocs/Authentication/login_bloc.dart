@@ -57,7 +57,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       await loginRepository.logout();
     } catch (err) {
-      log("Error ${err}");
+      log("Error bloc logout ${err}");
     }
     emit(LoginInitial());
   }

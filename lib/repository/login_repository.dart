@@ -10,19 +10,23 @@ class LoginRepository extends Repository {
     formData.fields
         .addAll(formDataMap.entries.map((e) => MapEntry(e.key, e.value)));
 
-    final response = await dio.post("/login.php", data: formData);
+    try {
+      final response = await dio.post("/login.php", data: formData);
 
-    Map repoResponse = {"status": false, "data": Null};
+      Map repoResponse = {"status": false, "data": Null};
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = response.data;
-      repoResponse['status'] = true;
-      repoResponse['data'] = data;
-      final SharedPreferences preferences =
-          await SharedPreferences.getInstance();
-      preferences.setString('session', data['session_token']);
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = response.data;
+        repoResponse['status'] = true;
+        repoResponse['data'] = data;
+        final SharedPreferences preferences =
+            await SharedPreferences.getInstance();
+        preferences.setString('session', data['session_token']);
+      }
+      return repoResponse;
+    } catch (e) {
+      log('error login ${e}');
     }
-    return repoResponse;
   }
 
   Future logout() async {
@@ -32,8 +36,13 @@ class LoginRepository extends Repository {
     FormData formData = FormData();
     formData.fields
         .addAll(formDataMap.entries.map((e) => MapEntry(e.key, e.value)));
-    final response = await dio.post("/logout.php", data: formData);
-    log("errors ${response}");
-    preferences.remove("session");
+
+    try {
+      final response = await dio.post("/logout.php", data: formData);
+      log("error ${response}");
+      preferences.remove("session");
+    } catch (e) {
+      log('error logout ${e}');
+    }
   }
 }
