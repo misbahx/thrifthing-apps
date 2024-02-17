@@ -102,7 +102,7 @@ class _AddProductFormState extends State<AddProductForm> {
                   ),
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
+                        MaterialStateProperty.all<Color>(Color(0xff4338CA)),
                   ),
                 ),
               ],
