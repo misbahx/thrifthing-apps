@@ -4,15 +4,24 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff0F172A),
       appBar: AppBar(
-        title: Text('About Thrifthing'),
+        title: Text(
+          'About Thrifthing',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: Colors.grey,
+        backgroundColor: Color(0xff0F172A),
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
@@ -21,26 +30,36 @@ class AboutPage extends StatelessWidget {
           children: [
             Center(
               child: Image.asset(
-                'images/logo-v2.png',
+                'assets/images/logo.png',
                 height: 300,
                 width: 300,
               ),
             ),
             SizedBox(height: 20),
             Text(
-              'Tentang Thrifthing',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              'Tentang Infinite Thrifthing',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             SizedBox(height: 20),
             Text(
-              'Thrifthing adalah aplikasi belanja mode terkini yang menghadirkan pengalaman belanja yang seru dan terjangkau. '
+              'Infinite Thrifthing adalah aplikasi belanja mode terkini yang menghadirkan pengalaman belanja yang seru dan terjangkau. '
               'Dengan koleksi terbaru, pencarian cepat, dan promo menarik, kami membawa konsep thrifting modern ke ujung jari Anda.',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
             ),
             SizedBox(height: 20),
             Text(
-              'Temukan fashion statement Anda sendiri dengan Thrifthing. Download aplikasi sekarang dan mulai petualangan belanja Anda yang seru dan terjangkau!',
-              style: TextStyle(fontSize: 16),
+              'Temukan fashion statement Anda sendiri dengan Infinite Thrifthing. Download aplikasi sekarang dan mulai petualangan belanja Anda yang seru dan terjangkau!',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
             ),
           ],
         ),

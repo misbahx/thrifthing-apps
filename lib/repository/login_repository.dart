@@ -29,6 +29,35 @@ class LoginRepository extends Repository {
     }
   }
 
+  Future register({
+    required String name,
+    required String username,
+    required String password,
+    required String sessionToken,
+  }) async {
+    try {
+      FormData formData = FormData.fromMap({
+        "name": name,
+        "username": username,
+        "password": password,
+        "session_token": sessionToken,
+      });
+
+      log("data buat create user ${formData}");
+
+      Response response = await dio.post("/create_user.php", data: formData);
+      log("response create user ${response}");
+
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw Exception("failed to create user");
+      }
+    } catch (err) {
+      log("Error register ${err}");
+    }
+  }
+
   Future logout() async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     final String session = preferences.getString("session") ?? "";

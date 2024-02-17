@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:thrifthing_app_kel4/pages/register.dart';
-import 'package:thrifthing_app_kel4/route/register_state.dart';
-import 'package:thrifthing_app_kel4/services/Blocs/Authentication/login_bloc.dart';
+import 'package:thrifthing_app_kel4/pages/login.dart';
+import 'package:thrifthing_app_kel4/services/Blocs/Register/register_bloc.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 150,
+                height: 100,
               ),
               Container(
                 padding: EdgeInsets.only(right: 20),
@@ -36,6 +36,21 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    TextFormField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        labelText: 'Name',
+                        labelStyle: TextStyle(color: Colors.white),
+                        prefixIcon: Icon(Icons.person, color: Colors.grey),
+                        filled: true,
+                        fillColor: Color(0xFF1E293B),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(height: 20),
                     TextFormField(
                       controller: _usernameController,
                       decoration: InputDecoration(
@@ -69,7 +84,7 @@ class LoginPage extends StatelessWidget {
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                        _handleLogin(context);
+                        _handleRegister(context);
                       },
                       style: ButtonStyle(
                         backgroundColor:
@@ -87,7 +102,7 @@ class LoginPage extends StatelessWidget {
                           horizontal: 30,
                         ),
                         child: Text(
-                          'Login',
+                          'Register',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
@@ -103,12 +118,11 @@ class LoginPage extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => RegisterMainState()),
+                          MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
                       child: Text(
-                        'Belum punya akun? Daftar sekarang!',
+                        'Sudah punya akun? Masuk',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -122,12 +136,13 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  void _handleLogin(BuildContext context) async {
+  void _handleRegister(BuildContext context) async {
+    String name = _nameController.text.trim();
     String username = _usernameController.text.trim();
     String password = _passwordController.text.trim();
 
-    BlocProvider.of<LoginBloc>(context).add(
-      ProsesLogin(username: username, password: password),
+    BlocProvider.of<RegisterBloc>(context).add(
+      ProsesRegister(name: name, username: username, password: password),
     );
   }
 }
