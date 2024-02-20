@@ -3,8 +3,8 @@ import "dart:developer";
 import "package:shared_preferences/shared_preferences.dart";
 
 class Repository {
-  final Dio dio = Dio(BaseOptions(
-      baseUrl: "https://misbahreactprogrammer.000webhostapp.com/apiv2"));
+  final Dio dio =
+      Dio(BaseOptions(baseUrl: "https://daryas-api.000webhostapp.com"));
 
   Future<bool> checkSession(String session) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();

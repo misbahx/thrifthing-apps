@@ -6,9 +6,16 @@ import 'package:thrifthing_app_kel4/route/edit_state.dart';
 import 'package:thrifthing_app_kel4/services/Blocs/DetailProduct/detail_product_bloc.dart';
 
 class ProductPage extends StatelessWidget {
-  final dynamic product;
+  final int id;
+  final String name, price, description, image;
 
-  ProductPage({required this.product});
+  ProductPage({
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.description,
+    required this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +31,7 @@ class ProductPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 1.7,
                   decoration: BoxDecoration(
                       color: Color(0xff0F172A),
-                      image: DecorationImage(
-                          image: NetworkImage(this.product['image']))),
+                      image: DecorationImage(image: NetworkImage(this.image))),
                   child: Padding(
                     padding: EdgeInsets.all(20),
                     child: Row(
@@ -82,14 +88,14 @@ class ProductPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                this.product['name'],
+                                this.name,
                                 style: TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
                               ),
                               Text(
-                                "Rp. ${this.product['price']}",
+                                "Rp. ${this.price}",
                                 style: TextStyle(
                                     fontSize: 25,
                                     fontWeight: FontWeight.w700,
@@ -121,7 +127,7 @@ class ProductPage extends StatelessWidget {
                         height: 20,
                       ),
                       Text(
-                        this.product['description'],
+                        this.description,
                         style: TextStyle(
                             fontSize: 16, color: Colors.white.withOpacity(0.8)),
                       ),
@@ -135,8 +141,8 @@ class ProductPage extends StatelessWidget {
                             onTap: () {
                               context.read<DetailProductBloc>().add(
                                     DeleteProductEvent(
-                                      productId: this.product['id'],
-                                      title: this.product["name"],
+                                      productId: this.id,
+                                      title: this.name,
                                     ),
                                   );
                             },
@@ -158,18 +164,18 @@ class ProductPage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => EditProductMainState(
-                                    id: this.product['id'],
-                                    name: this.product['name'],
-                                    description: this.product['description'],
-                                    price: this.product['price'],
-                                    image: this.product['image'],
+                                    id: this.id,
+                                    name: this.name,
+                                    description: this.description,
+                                    price: this.price,
+                                    image: this.image,
                                   ),
                                 ),
                               ).then((value) {
                                 if (value == 'reload') {
                                   context
                                       .read<DetailProductBloc>()
-                                      .add(LoadDetailProductEvent());
+                                      .add(LoadDetailProductEvent(id: this.id));
                                 }
                               });
                             },

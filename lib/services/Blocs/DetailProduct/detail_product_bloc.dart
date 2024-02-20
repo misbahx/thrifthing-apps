@@ -15,9 +15,20 @@ class DetailProductBloc extends Bloc<DetailProductEvent, DetailProductState> {
   }
 
   _loadDetailProductEvent(LoadDetailProductEvent event, Emitter emit) async {
-    emit(LoadingDetailProductState());
-    await Future.delayed(Duration(seconds: 1));
-    emit(DetailProductInitial());
+    final int id = event.id;
+    try {
+      emit(LoadingDetailProductState());
+
+      Map res = await productRepository.getProductById(id);
+      log("response detail product bloc: ${res}");
+      if (res.isNotEmpty) {
+        emit(DetailProductInitial(product: res));
+      } else {
+        emit(FailedLoadingDetailProductState(error: "Product not loaded"));
+      }
+    } catch (err) {
+      log("Catch error detail product bloc : ${err}");
+    }
   }
 
   _deleteProductEvent(DeleteProductEvent event, Emitter emit) async {

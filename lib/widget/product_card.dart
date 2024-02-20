@@ -22,7 +22,7 @@ class ProductCard extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ProductDetailMainState(
-                              product: this.product,
+                              id: this.product['id'],
                             ),
                           ));
                     },

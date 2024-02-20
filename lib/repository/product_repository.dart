@@ -47,6 +47,22 @@ class ProductRepository extends Repository {
     }
   }
 
+  Future getProductById(int id) async {
+    try {
+      FormData formData = FormData.fromMap({
+        "id": id,
+      });
+      final response = await dio.post('/get_product_by_id.php', data: formData);
+      log("Response product by id: ${response.data}");
+      Map<String, dynamic> responseData = response.data;
+      Map product = responseData["data"];
+      return product;
+    } catch (err) {
+      log("Error getListProduct: ${err}");
+      return [];
+    }
+  }
+
   Future editProduct({
     required int id,
     required String name,

@@ -8,8 +8,10 @@ sealed class DetailProductEvent extends Equatable {
 }
 
 final class LoadDetailProductEvent extends DetailProductEvent {
+  int id;
+  LoadDetailProductEvent({required this.id});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [id];
 }
 
 final class DeleteProductEvent extends DetailProductEvent {

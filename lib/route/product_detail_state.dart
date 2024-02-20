@@ -6,9 +6,9 @@ import 'package:thrifthing_app_kel4/widget/error.dart';
 import 'package:thrifthing_app_kel4/widget/loading.dart';
 
 class ProductDetailMainState extends StatefulWidget {
-  final dynamic product;
+  final int id;
 
-  ProductDetailMainState({required this.product});
+  ProductDetailMainState({required this.id});
 
   @override
   _ProductDetailMainStateState createState() => _ProductDetailMainStateState();
@@ -18,7 +18,9 @@ class _ProductDetailMainStateState extends State<ProductDetailMainState> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<DetailProductBloc>().add(LoadDetailProductEvent());
+      context
+          .read<DetailProductBloc>()
+          .add(LoadDetailProductEvent(id: widget.id));
     });
     super.initState();
   }
@@ -28,7 +30,13 @@ class _ProductDetailMainStateState extends State<ProductDetailMainState> {
     return BlocBuilder<DetailProductBloc, DetailProductState>(
       builder: (context, state) {
         if (state is DetailProductInitial) {
-          return ProductPage(product: widget.product);
+          return ProductPage(
+            id: state.product['id'],
+            name: state.product['name'],
+            price: state.product['price'],
+            description: state.product['description'],
+            image: state.product['image'],
+          );
         }
         if (state is LoadingDetailProductState) {
           return LoadingWidget();

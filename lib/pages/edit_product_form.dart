@@ -149,24 +149,23 @@ class _EditProductFormState extends State<EditProductForm> {
                 width: double.infinity,
                 fit: BoxFit.cover,
               )
-            : Container(),
-        _image != null
-            ? Container(
-                height: 300,
-                child: Image.file(
-                  _image!,
-                  fit: BoxFit.cover,
-                ),
-              )
-            : Container(
-                height: 100,
-                width: 100,
-                color: Color(0xFF1E293B),
-                child: Icon(
-                  Icons.image,
-                  color: Colors.grey,
-                ),
-              ),
+            : _image != null
+                ? Container(
+                    height: 300,
+                    child: Image.file(
+                      _image!,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : Container(
+                    height: 100,
+                    width: 100,
+                    color: Color(0xFF1E293B),
+                    child: Icon(
+                      Icons.image,
+                      color: Colors.grey,
+                    ),
+                  ),
         SizedBox(height: 8),
         ElevatedButton(
           onPressed: () async {

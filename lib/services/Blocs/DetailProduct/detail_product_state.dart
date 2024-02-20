@@ -8,8 +8,10 @@ sealed class DetailProductState extends Equatable {
 }
 
 final class DetailProductInitial extends DetailProductState {
+  final Map product;
+  DetailProductInitial({required this.product});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [product];
 }
 
 final class LoadingDetailProductState extends DetailProductState {
