@@ -45,7 +45,13 @@ class _ProductDetailMainStateState extends State<ProductDetailMainState> {
           return Scaffold(
             backgroundColor: Color(0xff0F172A),
             appBar: AppBar(
-              iconTheme: IconThemeData(color: Colors.white),
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ), // Icon panah kembali
+                onPressed: () => Navigator.of(context).pop("reload"),
+              ),
               title: Text(
                 "Hapus sukses",
                 style: TextStyle(color: Colors.white),

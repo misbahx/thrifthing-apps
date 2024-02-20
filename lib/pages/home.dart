@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thrifthing_app_kel4/pages/about.dart';
 import 'package:thrifthing_app_kel4/route/product_state.dart';
 import 'package:thrifthing_app_kel4/services/Blocs/Authentication/login_bloc.dart';
+import 'package:thrifthing_app_kel4/services/Blocs/ListProduct/list_product_bloc.dart';
 import 'package:thrifthing_app_kel4/widget/product_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -174,6 +175,13 @@ class _HomePageState extends State<HomePage> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => ProductMainState()),
+            ).then(
+              (value) => {
+                if (value == "reload")
+                  {
+                    context.read<ListProductBloc>().add(TampilProduct()),
+                  }
+              },
             );
           }
         },

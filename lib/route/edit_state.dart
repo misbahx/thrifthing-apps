@@ -48,7 +48,13 @@ class _EditProductMainStateState extends State<EditProductMainState> {
           return Scaffold(
             backgroundColor: Color(0xff0F172A),
             appBar: AppBar(
-              iconTheme: IconThemeData(color: Colors.white),
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ), // Icon panah kembali
+                onPressed: () => Navigator.of(context).pop("reload"),
+              ),
               title: Text(
                 "Edit Product",
                 style: TextStyle(color: Colors.white),
